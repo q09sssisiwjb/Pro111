@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <title>Visionary AI - Modern AI Tools Platform</title>
+    <meta name="description" content="Transform your creative workflow with our comprehensive suite of AI-powered tools. Generate images from text, remove backgrounds, upscale photos, and create stunning artwork effortlessly." />
+    
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="Visionary AI - Modern AI Tools Platform" />
+    <meta property="og:description" content="Transform your creative workflow with our comprehensive suite of AI-powered tools. Generate images from text, remove backgrounds, upscale photos, and create stunning artwork effortlessly." />
+    <meta property="og:type" content="website" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <!-- This is a replit script which adds a banner on the top of the page when opened in development mode outside the replit environment -->
+    <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js"></script>
+    
+    <!-- Adsterra Direct Link Exit Intent Script -->
+    <script type="text/javascript">
+      (function() {
+        const adsterraUrl = 'https://www.revenuecpmgate.com/bhww75bcue?key=1d9a547bb81b9ffacd93be046ec6b4bf';
+        const sessionKey = 'adsterra_exit_shown';
+        
+        console.log('Adsterra exit intent script initialized');
+        
+        // Check if ad was already shown in this session
+        if (sessionStorage.getItem(sessionKey)) {
+          console.log('Adsterra ad already shown in this session');
+          return;
+        }
+        
+        let exitIntentTriggered = false;
+        
+        // Exit intent detection - mouse leaving from top
+        function handleMouseLeave(e) {
+          const shouldTrigger = e.clientY <= 20 || e.clientY < 0 || e.relatedTarget === null || e.target === document.documentElement;
+          
+          console.log('Mouse leave detected, clientY:', e.clientY, 'should trigger:', shouldTrigger);
+          
+          // Check if mouse is leaving from the top of the viewport
+          if (shouldTrigger && !exitIntentTriggered) {
+            console.log('Exit intent triggered! Opening Adsterra link...');
+            exitIntentTriggered = true;
+            sessionStorage.setItem(sessionKey, 'true');
+            
+            // Open in new tab
+            const newWindow = window.open(adsterraUrl, '_blank');
+            
+            // Fallback if popup blocked
+            if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+              console.log('Pop-up blocked. Please allow pop-ups for this site.');
+            } else {
+              console.log('Adsterra ad opened successfully');
+            }
+            
+            // Remove listener after triggering
+            document.removeEventListener('mouseleave', handleMouseLeave);
+          }
+        }
+        
+        // Add exit intent listener after a short delay to avoid false triggers
+        setTimeout(function() {
+          console.log('Exit intent listener activated');
+          document.addEventListener('mouseleave', handleMouseLeave);
+        }, 1000);
+        
+        // Backup trigger for mobile or when closing tab
+        let clickCount = 0;
+        document.addEventListener('click', function() {
+          clickCount++;
+          console.log('Click count:', clickCount);
+        });
+        
+        window.addEventListener('beforeunload', function(e) {
+          // Only trigger if user has interacted with the page (clicked at least once)
+          if (!exitIntentTriggered && !sessionStorage.getItem(sessionKey) && clickCount > 0) {
+            console.log('Beforeunload triggered, opening Adsterra link...');
+            sessionStorage.setItem(sessionKey, 'true');
+            window.open(adsterraUrl, '_blank');
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
