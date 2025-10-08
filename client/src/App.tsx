@@ -123,10 +123,6 @@ function App() {
                   <main className="flex-1 overflow-auto">
                     <Router />
                   </main>
-                  {/* Adsterra Native Banner Ad */}
-                  <div className="w-full flex justify-center py-2 border-t">
-                    <div id="container-d51efc793257dfd38382c13408682cdc"></div>
-                  </div>
                 </div>
               </div>
               <ChatButton />
