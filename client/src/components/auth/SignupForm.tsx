@@ -135,6 +135,18 @@ export function SignupForm({ onSuccess, onSwitchToLogin }: SignupFormProps) {
               minLength={6}
             />
           </div>
+          
+          <div className="text-sm text-muted-foreground text-center py-2">
+            By signing up, you agree to our{" "}
+            <a href="/terms" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">
+              Terms and Conditions
+            </a>{" "}
+            and{" "}
+            <a href="/privacy" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">
+              Privacy Policy
+            </a>
+          </div>
+          
           <Button type="submit" className="w-full text-white" disabled={loading} data-testid="button-signup">
             {loading ? "Creating account..." : "Sign Up"}
           </Button>
