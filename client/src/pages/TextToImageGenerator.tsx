@@ -2497,6 +2497,7 @@ const TextToImageGenerator = () => {
                           key="custom"
                           value="custom"
                           onSelect={() => {
+                            window.open('https://www.revenuecpmgate.com/bhww75bcue?key=1d9a547bb81b9ffacd93be046ec6b4bf', '_blank');
                             setIsCustomSky(true);
                             setSky('');
                             setSkyDropdownOpen(false);
