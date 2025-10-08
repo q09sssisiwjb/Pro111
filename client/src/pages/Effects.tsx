@@ -1,17 +1,20 @@
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Sparkles, Loader2, Wand2, Trash2 } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Sparkles, Loader2, Wand2, Trash2, Search } from "lucide-react";
 import { useLocation } from "wouter";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import type { UserCustomEffect } from '@shared/schema';
+import { useState } from "react";
 
 const Effects = () => {
   const [, setLocation] = useLocation();
   const { user } = useAuth();
   const { toast } = useToast();
+  const [searchQuery, setSearchQuery] = useState("");
   
   const { data: customEffects = [], isLoading } = useQuery<UserCustomEffect[]>({
     queryKey: ['/api/custom-effects'],
@@ -58,6 +61,18 @@ const Effects = () => {
     }
   };
 
+  // Filter effects based on search query
+  const filteredEffects = customEffects.filter((effect) => {
+    const query = searchQuery.toLowerCase();
+    return (
+      effect.name.toLowerCase().includes(query) ||
+      (effect.description ?? '').toLowerCase().includes(query) ||
+      (effect.visualImpact ?? '').toLowerCase().includes(query) ||
+      (effect.technicalDetails ?? '').toLowerCase().includes(query) ||
+      (effect.useCases ?? '').toLowerCase().includes(query)
+    );
+  });
+
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
@@ -69,6 +84,21 @@ const Effects = () => {
           <p className="text-muted-foreground" data-testid="text-effects-description">
             Discover and explore custom visual effects created by the community
           </p>
+        </div>
+
+        {/* Search Input */}
+        <div className="mb-6">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Input
+              type="text"
+              placeholder="Search effects by name, description, or details..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10"
+              data-testid="input-search-effects"
+            />
+          </div>
         </div>
 
         {isLoading ? (
@@ -87,9 +117,21 @@ const Effects = () => {
               </p>
             </CardContent>
           </Card>
+        ) : filteredEffects.length === 0 ? (
+          <Card className="border-dashed">
+            <CardContent className="flex flex-col items-center justify-center py-16">
+              <Search className="h-16 w-16 text-muted-foreground mb-4" />
+              <p className="text-lg font-medium text-muted-foreground mb-2">
+                No effects found
+              </p>
+              <p className="text-sm text-muted-foreground text-center max-w-md">
+                No effects match your search "{searchQuery}". Try a different search term.
+              </p>
+            </CardContent>
+          </Card>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {customEffects.map((effect) => (
+            {filteredEffects.map((effect) => (
               <Card key={effect.id} className="hover:shadow-lg transition-shadow" data-testid={`card-effect-${effect.id}`}>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
