@@ -1,4 +1,5 @@
 import { Link } from "wouter";
+import { useEffect, useRef } from "react";
 
 const tools = [
   {
@@ -106,67 +107,107 @@ const tools = [
   }
 ];
 
+const AdsterraBanner = () => {
+  const adContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (adContainerRef.current) {
+      const script1 = document.createElement('script');
+      script1.type = 'text/javascript';
+      script1.innerHTML = `
+        atOptions = {
+          'key' : '3c88c0c6c156a411837976445c9a1161',
+          'format' : 'iframe',
+          'height' : 50,
+          'width' : 320,
+          'params' : {}
+        };
+      `;
+      
+      const script2 = document.createElement('script');
+      script2.type = 'text/javascript';
+      script2.src = '//www.highperformanceformat.com/3c88c0c6c156a411837976445c9a1161/invoke.js';
+      
+      adContainerRef.current.appendChild(script1);
+      adContainerRef.current.appendChild(script2);
+    }
+  }, []);
+
+  return (
+    <div ref={adContainerRef} data-testid="adsterra-banner-ad" />
+  );
+};
+
 const ToolsSection = () => {
   return (
-    <section id="tools" className="pt-0 pb-0 bg-primary/5" data-testid="tools-section">
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-nowrap gap-3 overflow-x-auto">
-          {tools.map((tool) => {
-            const ToolContainer = ({ children }: { children: React.ReactNode }) => {
-              if (tool.link.startsWith('/')) {
-                return (
-                  <Link href={tool.link} className="block">
-                    {children}
-                  </Link>
-                );
-              } else {
-                return (
-                  <a href={tool.link} className="block">
-                    {children}
-                  </a>
-                );
-              }
-            };
-            
-            return (
-              <div 
-                key={tool.id}
-                className="flex-shrink-0 basis-1/4 sm:basis-1/5 md:basis-1/6 lg:basis-[12.5%]"
-                data-testid={`tool-card-${tool.id}`}
-              >
-                <ToolContainer>
-                  <div 
-                    className="group relative cursor-pointer h-full transition-all duration-200 hover:scale-105"
-                  >
-                    {/* Simplified Container */}
+    <>
+      <section id="tools" className="pt-0 pb-0 bg-primary/5" data-testid="tools-section">
+        <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-nowrap gap-3 overflow-x-auto">
+            {tools.map((tool) => {
+              const ToolContainer = ({ children }: { children: React.ReactNode }) => {
+                if (tool.link.startsWith('/')) {
+                  return (
+                    <Link href={tool.link} className="block">
+                      {children}
+                    </Link>
+                  );
+                } else {
+                  return (
+                    <a href={tool.link} className="block">
+                      {children}
+                    </a>
+                  );
+                }
+              };
+              
+              return (
+                <div 
+                  key={tool.id}
+                  className="flex-shrink-0 basis-1/4 sm:basis-1/5 md:basis-1/6 lg:basis-[12.5%]"
+                  data-testid={`tool-card-${tool.id}`}
+                >
+                  <ToolContainer>
                     <div 
-                      className="bg-card/50 backdrop-blur border border-border/50 rounded-xl hover:border-primary/50 transition-all duration-200 hover:shadow-lg hover:shadow-primary/20"
-                    ></div>
-                    
-                    {/* Simplified Inner Container */}
-                    <div className="relative p-3 text-center space-y-2 h-full flex flex-col items-center justify-center rounded-xl">
-                      {/* Simple Icon */}
-                      <div className="bg-primary/10 p-2 rounded-full group-hover:bg-primary/20 transition-colors duration-200">
-                        <div className="h-5 w-5 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]">
-                          {tool.icon}
-                        </div>
-                      </div>
+                      className="group relative cursor-pointer h-full transition-all duration-200 hover:scale-105"
+                    >
+                      {/* Simplified Container */}
+                      <div 
+                        className="bg-card/50 backdrop-blur border border-border/50 rounded-xl hover:border-primary/50 transition-all duration-200 hover:shadow-lg hover:shadow-primary/20"
+                      ></div>
                       
-                      <h3 
-                        className="text-xs font-medium text-foreground whitespace-nowrap group-hover:text-primary transition-colors duration-200"
-                        data-testid={`tool-name-${tool.id}`}
-                      >
-                        {tool.name}
-                      </h3>
+                      {/* Simplified Inner Container */}
+                      <div className="relative p-3 text-center space-y-2 h-full flex flex-col items-center justify-center rounded-xl">
+                        {/* Simple Icon */}
+                        <div className="bg-primary/10 p-2 rounded-full group-hover:bg-primary/20 transition-colors duration-200">
+                          <div className="h-5 w-5 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]">
+                            {tool.icon}
+                          </div>
+                        </div>
+                        
+                        <h3 
+                          className="text-xs font-medium text-foreground whitespace-nowrap group-hover:text-primary transition-colors duration-200"
+                          data-testid={`tool-name-${tool.id}`}
+                        >
+                          {tool.name}
+                        </h3>
+                      </div>
                     </div>
-                  </div>
-                </ToolContainer>
-              </div>
-            );
-          })}
+                  </ToolContainer>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+      
+      {/* Adsterra Banner Ad */}
+      <div className="bg-primary/5 py-4" data-testid="adsterra-banner-container">
+        <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex justify-center">
+          <AdsterraBanner />
         </div>
       </div>
-    </section>
+    </>
   );
 };
 
