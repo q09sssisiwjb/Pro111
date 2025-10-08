@@ -511,6 +511,11 @@ const TextToImageGenerator = () => {
     },
   });
 
+  // Adsterra social bar ad loader
+  const loadAdsterraSocialBar = () => {
+    const adScript = document.createElement('script'); adScript.type = 'text/javascript'; adScript.src = '//pl27460909.revenuecpmgate.com/7c/54/21/7c542132274280467044ad56e381178e.js'; adScript.async = true; document.body.appendChild(adScript);
+  };
+
   // Cleanup object URLs only on component unmount
   useEffect(() => {
     return () => {
@@ -2400,6 +2405,7 @@ const TextToImageGenerator = () => {
                           value="custom"
                           onSelect={() => {
                             window.open('https://www.revenuecpmgate.com/bhww75bcue?key=1d9a547bb81b9ffacd93be046ec6b4bf', '_blank');
+                            loadAdsterraSocialBar();
                             setIsCustomBackground(true);
                             setBackground('');
                             setBackgroundDropdownOpen(false);
@@ -2498,6 +2504,7 @@ const TextToImageGenerator = () => {
                           value="custom"
                           onSelect={() => {
                             window.open('https://www.revenuecpmgate.com/bhww75bcue?key=1d9a547bb81b9ffacd93be046ec6b4bf', '_blank');
+                            loadAdsterraSocialBar();
                             setIsCustomSky(true);
                             setSky('');
                             setSkyDropdownOpen(false);
@@ -2596,6 +2603,7 @@ const TextToImageGenerator = () => {
                           value="custom"
                           onSelect={() => {
                             window.open('https://www.revenuecpmgate.com/bhww75bcue?key=1d9a547bb81b9ffacd93be046ec6b4bf', '_blank');
+                            loadAdsterraSocialBar();
                             setIsCustomWeather(true);
                             setWeather('');
                             setWeatherDropdownOpen(false);
@@ -2694,6 +2702,7 @@ const TextToImageGenerator = () => {
                           value="custom"
                           onSelect={() => {
                             window.open('https://www.revenuecpmgate.com/bhww75bcue?key=1d9a547bb81b9ffacd93be046ec6b4bf', '_blank');
+                            loadAdsterraSocialBar();
                             setIsCustomExpression(true);
                             setExpression('');
                             setExpressionDropdownOpen(false);
