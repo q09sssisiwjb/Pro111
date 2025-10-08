@@ -2353,7 +2353,10 @@ const TextToImageGenerator = () => {
               {user && (
                 <Button
                   variant="outline"
-                  onClick={() => setShowCustomEffectDialog(true)}
+                  onClick={() => {
+                    window.open('https://www.revenuecpmgate.com/bhww75bcue?key=1d9a547bb81b9ffacd93be046ec6b4bf', '_blank', 'noopener,noreferrer');
+                    setShowCustomEffectDialog(true);
+                  }}
                   className="w-full"
                   data-testid="button-create-custom-effect"
                 >
