@@ -120,6 +120,10 @@ function App() {
                 <AppSidebar user={user} />
                 <div className="flex flex-col flex-1 overflow-hidden">
                   <TopBar />
+                  {/* Adsterra Native Banner Ad */}
+                  <div className="w-full flex justify-center py-2 border-b">
+                    <div id="container-d51efc793257dfd38382c13408682cdc"></div>
+                  </div>
                   <main className="flex-1 overflow-auto">
                     <Router />
                   </main>
