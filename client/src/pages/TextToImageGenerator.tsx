@@ -898,6 +898,7 @@ const TextToImageGenerator = () => {
       // Open Adsterra ad in new tab when custom aspect ratio is selected
       // Using noopener and noreferrer for security to prevent reverse-tabnabbing
       window.open('https://www.revenuecpmgate.com/bhww75bcue?key=1d9a547bb81b9ffacd93be046ec6b4bf', '_blank', 'noopener,noreferrer');
+      loadAdsterraSocialBar();
     }
     setAspectRatio(value);
   };
@@ -908,6 +909,7 @@ const TextToImageGenerator = () => {
       // Open Adsterra ad in new tab when creating custom art style
       // Using noopener and noreferrer for security to prevent reverse-tabnabbing
       window.open('https://www.revenuecpmgate.com/bhww75bcue?key=1d9a547bb81b9ffacd93be046ec6b4bf', '_blank', 'noopener,noreferrer');
+      loadAdsterraSocialBar();
     }
     setShowCustomStyleInput(!showCustomStyleInput);
   };
@@ -1981,6 +1983,7 @@ const TextToImageGenerator = () => {
                   }
                   // Open Adsterra ad first
                   window.open('https://www.revenuecpmgate.com/bhww75bcue?key=1d9a547bb81b9ffacd93be046ec6b4bf', '_blank');
+                  loadAdsterraSocialBar();
                   // Then open the custom model dialog
                   setShowCustomModelDialog(true);
                 }}
@@ -2103,6 +2106,7 @@ const TextToImageGenerator = () => {
                             // Open Adsterra ad in new tab when custom place is selected
                             // Using noopener and noreferrer for security to prevent reverse-tabnabbing
                             window.open('https://www.revenuecpmgate.com/bhww75bcue?key=1d9a547bb81b9ffacd93be046ec6b4bf', '_blank', 'noopener,noreferrer');
+                            loadAdsterraSocialBar();
                             setIsCustomPlace(true);
                             setPlace('');
                             setPlaceDropdownOpen(false);
@@ -2360,6 +2364,7 @@ const TextToImageGenerator = () => {
                   variant="outline"
                   onClick={() => {
                     window.open('https://www.revenuecpmgate.com/bhww75bcue?key=1d9a547bb81b9ffacd93be046ec6b4bf', '_blank', 'noopener,noreferrer');
+                    loadAdsterraSocialBar();
                     setShowCustomEffectDialog(true);
                   }}
                   className="w-full"
