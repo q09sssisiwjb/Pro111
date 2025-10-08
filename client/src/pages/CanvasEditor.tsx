@@ -9,6 +9,38 @@ import { useToast } from '@/hooks/use-toast';
 import { useMutation } from '@tanstack/react-query';
 import { apiRequest } from '@/lib/queryClient';
 import { Sparkles, Loader2, Download, Palette, Eraser } from 'lucide-react';
+import { useRef } from 'react';
+
+const AdsterraBanner = () => {
+  const adContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (adContainerRef.current) {
+      const script1 = document.createElement('script');
+      script1.type = 'text/javascript';
+      script1.innerHTML = `
+        atOptions = {
+          'key' : '3c88c0c6c156a411837976445c9a1161',
+          'format' : 'iframe',
+          'height' : 50,
+          'width' : 320,
+          'params' : {}
+        };
+      `;
+      
+      const script2 = document.createElement('script');
+      script2.type = 'text/javascript';
+      script2.src = '//www.highperformanceformat.com/3c88c0c6c156a411837976445c9a1161/invoke.js';
+      
+      adContainerRef.current.appendChild(script1);
+      adContainerRef.current.appendChild(script2);
+    }
+  }, []);
+
+  return (
+    <div ref={adContainerRef} data-testid="adsterra-banner-ad" />
+  );
+};
 
 const CanvasEditor = () => {
   const [excalidrawAPI, setExcalidrawAPI] = useState<ExcalidrawImperativeAPI | null>(null);
@@ -220,6 +252,11 @@ const CanvasEditor = () => {
                 rows={4}
                 data-testid="textarea-prompt"
               />
+            </div>
+
+            {/* Adsterra Banner Ad */}
+            <div className="flex justify-center py-2" data-testid="adsterra-banner-container">
+              <AdsterraBanner />
             </div>
 
             <Button
